@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience — Anne Zhou's Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Alternating Timeline */
+    .timeline-alt { position: relative; max-width: 1000px; margin: 0 auto; padding: 0; }
+    .timeline-alt::before {
+      content: ''; position: absolute; left: 55%; top: 0; bottom: 0; width: 1px;
+      background: var(--border); transform: translateX(-50%);
+    }
+    .timeline-alt .timeline-item {
+      position: relative; width: 55%; padding-bottom: 2.5rem;
+      cursor: pointer;
+    }
+    .timeline-alt .timeline-item.left { padding-right: 2rem; }
+    .timeline-alt .timeline-item.right { margin-left: 55%; padding-left: 2rem; }
+    .timeline-alt .timeline-item::before {
+      content: ''; position: absolute; top: 0.5rem; width: 9px; height: 9px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--accent); transform: translateX(-50%);
+    }
+    .timeline-alt .timeline-item.left::before { left: 100%; }
+    .timeline-alt .timeline-item.right::before { left: 0; }
+    .timeline-alt .timeline-card {
+      border: 1px solid var(--border); padding: 1.5rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .timeline-alt .timeline-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .timeline-alt .timeline-content {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+    }
+    .timeline-alt .timeline-item:hover .timeline-content,
+    .timeline-alt .timeline-item.active .timeline-content {
+      max-height: 500px; opacity: 1; margin-top: 0.75rem;
+    }
+    .timeline-alt .timeline-date { margin-bottom: 0.5rem; }
+    .timeline-alt .timeline-title { font-size: 1.05rem; }
+    .timeline-alt .timeline-subtitle { margin-bottom: 0; }
+    @media (max-width: 768px) {
+      .timeline-alt::before { left: 1.5rem; }
+      .timeline-alt .timeline-item { width: 100%; padding-left: 3rem; padding-right: 0; }
+      .timeline-alt .timeline-item.right { margin-left: 0; padding-left: 3rem; }
+      .timeline-alt .timeline-item.left::before,
+      .timeline-alt .timeline-item.right::before { left: 1.5rem; }
+      .timeline-alt .timeline-content { max-height: 500px; opacity: 1; margin-top: 0.75rem; }
+    }
+  </style>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a href="index.html" class="site-title">Anne Zhou's Atlas</a>
+    <nav class="site-nav">
+      <a href="experience.html" class="active">个人经历 / Experience</a>
+      <a href="works.html">作品集 / Portfolio</a>
+      <a href="about.html">关于 / About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-header animate visible">
+      <h1 class="page-title">Experience</h1>
+      <p class="page-subtitle">个人经历 —— 现场正发生</p>
+    </div>
+
+    <section class="section animate d1 visible">
+      <h2 class="section-title">Internships <span>/ 实习经历</span></h2>
+      <div class="timeline timeline-alt">
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-date">2025.04 — 2025.08</div>
+            <div class="timeline-title">企鹅兰登（北京）文化发展有限公司</div>
+            <div class="timeline-subtitle">市场部实习生</div>
+            <div class="timeline-content">
+              <ul>
+                <li>独立运营官方微信公众号、小红书与微博</li>
+                <li>协助翻译整理新书系列宣传资料，参与客户年礼方案策划</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-card">
+            <div class="timeline-date">2025.01 — 2025.03</div>
+            <div class="timeline-title">广西师范大学出版社·新民说</div>
+            <div class="timeline-subtitle">文字编辑实习生</div>
+            <div class="timeline-content">
+              <ul>
+                <li>协助完成品牌图书书稿初审及校对工作</li>
+                <li>独立运营官方微博账号，创作线上内容及线下活动物料</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-date">2024.03 — 2024.09</div>
+            <div class="timeline-title">Bloomsbury Publishing PLC.</div>
+            <div class="timeline-subtitle">Marketing Intern</div>
+            <div class="timeline-content">
+              <ul>
+                <li>独立运营官方微信公众号、小红书账号</li>
+                <li>跟进BIBF哈利·波特快闪书店等大型线下活动</li>
+                <li>翻译并制作每月新书资料，提炼产品卖点，统筹邮件分发</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-card">
+            <div class="timeline-date">2023.03 — 至今</div>
+            <div class="timeline-title">上海市作家协会</div>
+            <div class="timeline-subtitle">通讯员实习生</div>
+            <div class="timeline-content">
+              <ul>
+                <li>负责"思南读书会"活动后期新闻稿撰写</li>
+                <li>协助上海国际文学周、长三角·大湾区文学周宣传工作</li>
+                <li>协助整理《在思南阅读世界·第七辑》书稿</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-date">2022.11 — 2023.02</div>
+            <div class="timeline-title">江苏凤凰文艺出版社</div>
+            <div class="timeline-subtitle">新媒体运营实习生</div>
+            <div class="timeline-content">
+              <ul>
+                <li>负责官方微信公众号推文编辑及小红书文案撰写</li>
+                <li>协助大型活动组织，现场签到引导、拍摄、采访等工作</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section animate d2 visible">
+      <h2 class="section-title">Campus <span>/ 校园经历</span></h2>
+      <div class="timeline timeline-alt">
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-date">2024.07 — 2025.06</div>
+            <div class="timeline-title">南京师范大学 党委宣传部 新媒体团</div>
+            <div class="timeline-subtitle">副团长</div>
+            <div class="timeline-content">
+              <ul>
+                <li>协助运营官方微信公众号，独立运营官方微博</li>
+                <li>建立并完善团队规章制度，组织招新及培训、团建活动</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-card">
+            <div class="timeline-date">2021.09 — 2022.06</div>
+            <div class="timeline-title">南京师范大学 教育科学学院 2102 班</div>
+            <div class="timeline-subtitle">宣传委员</div>
+            <div class="timeline-content">
+              <ul>
+                <li>负责班团活动组织管理及外宣工作，撰写新闻通讯稿件</li>
+                <li>独立运营班级公众号、微博，搭建班团宣传新媒体矩阵</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-item">
+        <strong>Email</strong>
+        <p><a href="mailto:2003-2009-2013@163.com">2003-2009-2013@163.com</a></p>
+      </div>
+      <div class="footer-item">
+        <strong>Tel</strong>
+        <p class="tel-copy" onclick="copyTel(this)" title="点击复制">+86 177 7737 5720</p>
+      </div>
+      <div class="footer-item footer-download">
+        <strong>下载简历 / Resume</strong>
+        <p><a href="周欣怡-南京师范大学-研一-出版.pdf" download class="resume-link">中文</a><span class="resume-sep"> / </span><a href="Resume - Anne Zhou.pdf" download class="resume-link">English</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyTel(el) {
+      const text = '+8617777375720';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => showCopied(el)).catch(() => fallbackCopy(text, el));
+      } else {
+        fallbackCopy(text, el);
+      }
+    }
+    function fallbackCopy(text, el) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+      showCopied(el);
+    }
+    function showCopied(el) {
+      el.classList.add('copied');
+      setTimeout(() => el.classList.remove('copied'), 1500);
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

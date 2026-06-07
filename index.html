@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anne Zhou's Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 2rem 4rem; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; }
+    .hero-text { min-width: 0; }
+    .greeting { font-family: var(--font-sans); font-size: clamp(4rem, 12vw, 10rem); font-weight: 700; line-height: 1; letter-spacing: -0.03em; margin-bottom: 1.5rem; opacity: 0; transform: translateY(40px); animation: fadeUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+    .hero-subtitle { font-family: var(--font-serif); font-size: clamp(1.25rem, 3vw, 2rem); font-weight: 300; color: var(--text-secondary); margin-bottom: 1rem; opacity: 0; transform: translateY(40px); animation: fadeUp 1s 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+    .hero-subtitle::before { content: '—'; margin-right: 0.75rem; color: var(--accent); }
+    .hero-tagline { font-family: var(--font-sans); font-size: 1rem; font-weight: 400; letter-spacing: 0.05em; color: var(--text-secondary); opacity: 0; transform: translateY(40px); animation: fadeUp 1s 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+    .hero-tree { opacity: 0; transform: translateY(40px); animation: fadeUp 1s 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; flex-shrink: 0; position: relative; overflow: hidden; }
+    .hero-tree svg { width: clamp(200px, 30vw, 320px); height: auto; display: block; }
+    /* Falling leaves */
+    .leaf { position: absolute; width: 4px; height: 6px; background: #1a1a1a; border-radius: 60% 40% 50% 0; opacity: 0; pointer-events: none; animation: leafFall var(--d) var(--del) infinite linear; top: -10px; left: var(--x); }
+    @keyframes leafFall {
+      0%   { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+      8%   { opacity: 0.55; }
+      85%  { opacity: 0.2; }
+      100% { transform: translateY(480px) rotate(var(--sp)) translateX(var(--dr)); opacity: 0; }
+    }
+    .hero-links { margin-top: 3rem; opacity: 0; transform: translateY(40px); animation: fadeUp 1s 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; grid-column: 1 / -1; }
+    .tel-copy { cursor: pointer; position: relative; transition: color 0.2s; }
+    .tel-copy:hover { color: var(--accent); }
+    .tel-copy.copied::after { content: '已复制'; position: relative; left: 0; top: -1.4em; font-size: 0.75rem; color: var(--accent); white-space: nowrap; }
+    @media (max-width: 768px) {
+      .hero { padding: 10rem 1.5rem 3rem; }
+      .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .hero-tree { order: -1; margin: 0 auto; }
+      .hero-tree svg { width: 180px; }
+      .hero-links { margin-top: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-title">Anne Zhou's Atlas</div>
+    <nav class="site-nav">
+      <a href="experience.html">个人经历 / Experience</a>
+      <a href="works.html">作品集 / Portfolio</a>
+      <a href="about.html">关于 / About</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1 class="greeting">Hi,</h1>
+        <h2 class="hero-subtitle">欢迎来到周欣怡的林地。</h2>
+        <p class="hero-tagline">This is Anne Zhou's Atlas.<br>Start Exploring ↓</p>
+      </div>
+
+      <div class="hero-tree">
+        <svg viewBox="0 0 320 480" xmlns="http://www.w3.org/2000/svg">
+          <style>
+            .s { fill: none; stroke: #1a1a1a; stroke-linecap: round; stroke-linejoin: round; }
+            .s0 { stroke-width: 0.7; opacity: .3; }
+            .s1 { stroke-width: 1.1; opacity: .5; }
+            .s2 { stroke-width: 1.6; opacity: .75; }
+            .s3 { stroke-width: 0.4; opacity: .18; }
+            .b { fill: #1a1a1a; opacity: .7; }
+            .r { stroke-width: 0.6; opacity: .25; }
+          </style>
+          <g transform="rotate(-4, 155, 260)">
+          <path class="s r" d="M40 465 Q150 475 280 462"/>
+          <path class="s r" d="M60 470 Q150 480 260 468"/>
+          <path class="s s0" d="M148 460 Q120 470 95 468M152 462 Q185 472 215 468M150 458 Q135 465 118 464"/>
+          <path class="s s0" d="M155 460Q153 400 152 350Q150 300 148 250Q145 200 140 155Q135 120 130 95"/>
+          <path class="s s1" d="M148 460Q146 400 145 350Q143 300 141 250Q138 200 133 155Q128 120 123 95"/>
+          <path class="s s2" d="M150 462Q148 400 147 350Q145 300 143 250Q140 200 135 155Q130 120 125 95"/>
+          <path class="s s0" d="M152 458Q150 400 149 350Q147 300 145 250Q142 200 137 155Q132 120 127 95"/>
+          <path class="s s3" d="M144 400Q150 395 156 400M142 340Q148 335 154 340M140 280Q146 275 152 280M138 220Q144 215 150 220M136 170Q142 165 148 170M143 370Q149 365 155 370M141 310Q147 305 153 310M139 250Q145 245 151 250M137 200Q143 195 149 200"/>
+          <path class="s s0" d="M143 280Q120 240 98 200Q78 165 62 135"/>
+          <path class="s s1" d="M145 278Q122 238 100 198Q80 163 64 133"/>
+          <path class="s s2" d="M141 282Q118 242 96 202Q76 167 60 137"/>
+          <path class="s s1" d="M100 198Q82 178 65 158"/>
+          <path class="s s0" d="M96 202Q78 182 62 162M78 165Q65 150 52 138M64 133Q50 118 40 108M62 135Q72 118 78 105M65 158Q55 148 46 140M60 137Q48 128 38 120M52 138Q42 130 35 122"/>
+          <path class="s s0" d="M145 250Q175 230 200 200Q225 170 245 140"/>
+          <path class="s s1" d="M147 248Q177 228 202 198Q227 168 247 138"/>
+          <path class="s s2" d="M143 252Q173 232 198 202Q223 172 243 142"/>
+          <path class="s s1" d="M200 200Q220 178 235 155"/>
+          <path class="s s0" d="M202 198Q222 176 237 153M225 170Q242 152 258 135M245 140Q260 125 272 110M247 138Q258 128 270 118M235 155Q250 142 262 130M243 142Q255 130 265 118M258 135Q268 125 278 115"/>
+          <path class="s s0" d="M133 200Q115 170 100 145"/>
+          <path class="s s1" d="M135 198Q117 168 102 143"/>
+          <path class="s s0" d="M100 145Q88 125 78 108M102 143Q92 130 84 118M137 180Q158 155 175 130"/>
+          <path class="s s1" d="M135 182Q156 157 173 132"/>
+          <path class="s s0" d="M175 130Q188 112 198 98M173 132Q185 118 195 105"/>
+          <path class="s s1" d="M130 140Q120 115 112 95M128 125Q138 108 145 92"/>
+          <path class="s s0" d="M132 138Q122 113 114 93M126 127Q136 110 143 94M123 110Q115 95 108 82M125 108Q118 93 112 80"/>
+          <path class="s s2" d="M130 95Q128 78 125 62"/>
+          <path class="s s1" d="M128 95Q126 78 123 62"/>
+          <path class="s s0" d="M125 62Q120 48 115 38M123 62Q130 48 135 38M125 62Q122 52 118 42"/>
+          <g class="b">
+            <circle cx="65" cy="158" r="2.2"/><circle cx="60" cy="137" r="1.8"/><circle cx="52" cy="138" r="1.5"/><circle cx="46" cy="140" r="1.8"/><circle cx="38" cy="120" r="1.5"/><circle cx="35" cy="122" r="1.3"/><circle cx="40" cy="108" r="1.8"/><circle cx="78" cy="105" r="1.5"/>
+            <circle cx="235" cy="155" r="2.0"/><circle cx="243" cy="142" r="2.2"/><circle cx="247" cy="138" r="1.8"/><circle cx="258" cy="135" r="1.5"/><circle cx="272" cy="110" r="1.8"/><circle cx="270" cy="118" r="1.5"/><circle cx="262" cy="130" r="1.5"/><circle cx="265" cy="118" r="1.3"/><circle cx="278" cy="115" r="1.8"/>
+            <circle cx="100" cy="145" r="2.0"/><circle cx="78" cy="108" r="1.8"/><circle cx="84" cy="118" r="1.5"/>
+            <circle cx="175" cy="130" r="1.8"/><circle cx="198" cy="98" r="1.5"/><circle cx="195" cy="105" r="1.5"/>
+            <circle cx="108" cy="82" r="1.8"/><circle cx="112" cy="80" r="1.5"/><circle cx="112" cy="95" r="2.0"/><circle cx="145" cy="92" r="1.8"/><circle cx="114" cy="93" r="1.5"/>
+            <circle cx="115" cy="38" r="1.5"/><circle cx="135" cy="38" r="1.8"/><circle cx="118" cy="42" r="1.3"/>
+            <circle cx="90" cy="230" r="1.3"/><circle cx="82" cy="185" r="1.2"/><circle cx="110" cy="210" r="1.4"/><circle cx="210" cy="215" r="1.3"/><circle cx="230" cy="185" r="1.2"/><circle cx="195" cy="170" r="1.4"/><circle cx="120" cy="165" r="1.2"/><circle cx="160" cy="145" r="1.3"/><circle cx="155" cy="115" r="1.2"/><circle cx="140" cy="78" r="1.3"/><circle cx="130" cy="55" r="1.4"/>
+          </g>
+          <g class="b" opacity=".35">
+            <circle cx="130" cy="462" r="1.0"/><circle cx="165" cy="465" r="0.8"/><circle cx="145" cy="468" r="1.1"/><circle cx="175" cy="463" r="0.9"/><circle cx="120" cy="466" r="0.7"/><circle cx="190" cy="464" r="0.8"/>
+          </g>
+          </g>
+        </svg>
+        <span class="leaf" style="--x:18%;--d:3.8s;--del:0s;--dr:-25px;--sp:-320deg;"></span>
+        <span class="leaf" style="--x:32%;--d:5.2s;--del:0.8s;--dr:30px;--sp:280deg;"></span>
+        <span class="leaf" style="--x:48%;--d:4.4s;--del:1.6s;--dr:-18px;--sp:-400deg;"></span>
+        <span class="leaf" style="--x:62%;--d:6.0s;--del:0.4s;--dr:22px;--sp:350deg;"></span>
+        <span class="leaf" style="--x:75%;--d:4.8s;--del:2.2s;--dr:-28px;--sp:-360deg;"></span>
+        <span class="leaf" style="--x:85%;--d:5.6s;--del:1.2s;--dr:15px;--sp:300deg;"></span>
+        <span class="leaf" style="--x:22%;--d:4.0s;--del:3.0s;--dr:-20px;--sp:-340deg;"></span>
+        <span class="leaf" style="--x:55%;--d:5.0s;--del:2.8s;--dr:25px;--sp:380deg;"></span>
+        <span class="leaf" style="--x:40%;--d:3.5s;--del:1.0s;--dr:-15px;--sp:-290deg;"></span>
+        <span class="leaf" style="--x:70%;--d:6.5s;--del:3.4s;--dr:18px;--sp:420deg;"></span>
+        <span class="leaf" style="--x:28%;--d:4.6s;--del:2.4s;--dr:-22px;--sp:-370deg;"></span>
+        <span class="leaf" style="--x:80%;--d:5.4s;--del:0.6s;--dr:20px;--sp:330deg;"></span>
+        <span class="leaf" style="--x:50%;--d:3.2s;--del:1.8s;--dr:-12px;--sp:-310deg;"></span>
+        <span class="leaf" style="--x:35%;--d:5.8s;--del:3.6s;--dr:28px;--sp:400deg;"></span>
+        <span class="leaf" style="--x:65%;--d:4.2s;--del:0.2s;--dr:-24px;--sp:-350deg;"></span>
+      </div>
+
+
+
+      <div class="hero-links card-grid">
+        <a href="experience.html" class="card">
+          <div class="cn">个人经历</div>
+          <div class="en">Experience</div>
+          <span class="arrow">→</span>
+        </a>
+        <a href="works.html" class="card">
+          <div class="cn">作品集</div>
+          <div class="en">Portfolio</div>
+          <span class="arrow">→</span>
+        </a>
+        <a href="about.html" class="card">
+          <div class="cn">关于</div>
+          <div class="en">About</div>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-item">
+        <strong>Email</strong>
+        <p><a href="mailto:2003-2009-2013@163.com">2003-2009-2013@163.com</a></p>
+      </div>
+      <div class="footer-item">
+        <strong>Tel</strong>
+        <p class="tel-copy" onclick="var t=document.createElement('textarea');t.value='(86) 177 7737 5720';t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),1500)" title="点击复制">+86 177 7737 5720</p>
+      </div>
+      <div class="footer-item footer-download">
+        <strong>下载简历 / Resume</strong>
+        <p><a href="周欣怡-南京师范大学-研一-出版.pdf" download class="resume-link">中文</a><span class="resume-sep"> / </span><a href="Resume - Anne Zhou.pdf" download class="resume-link">English</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const tree = document.querySelector('.hero-tree');
+      if (tree) tree.style.transform = `translateY(${scrolled * 0.06}px)`;
+    });
+  </script>
+</body>
+</html>

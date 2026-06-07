@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Works — Anne Zhou's Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Platform icons from images */
+    .platform-icon { width: 28px; height: 28px; border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+    .platform-icon img { width: 100%; height: 100%; object-fit: cover; }
+    /* Stat icons */
+    .stat-icon { width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right: 0.25rem; }
+    .stat-icon img { width: 100%; height: 100%; object-fit: contain; }
+    /* Weibo avatars */
+    .wb-avatar-img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    /* RedNote account hover underline */
+    .platform-handle a { position: relative; padding-bottom: 1px; transition: color 0.3s; }
+    .platform-handle a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: currentColor; transition: width 0.3s ease; }
+    .platform-handle a:hover::after { width: 100%; }
+    .platform-handle a.nowrap { white-space: nowrap; }
+    /* Weibo stats */
+    .wb-stats { font-size: 0.8rem !important; color: var(--accent) !important; font-weight: 600; }
+    .wb-stats .wb-label { font-size: 0.6rem; color: #1a1a1a; font-weight: 400; }
+    /* Video 9:16 */
+    .video-card { display: flex; flex-direction: column; }
+    .video-card .vid-cover { aspect-ratio: 9/16; }
+    .video-card .vid-cover video { width: 100%; height: 100%; object-fit: cover; }
+    /* === RedNote cards: image + white banner === */
+    .rednote-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+    .rednote-card { border-radius: 0; overflow: hidden; cursor: pointer; background: #fff; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; aspect-ratio: auto; }
+    .rednote-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .rn-img-wrap { position: relative; background: #f0f0f0; }
+    .rn-img-wrap.crop { aspect-ratio: 249 / 353; overflow: hidden; }
+    .rn-img-wrap.crop img { width: 100%; height: 100%; object-fit: cover; }
+    .rn-img-wrap img { width: 100%; height: auto; display: block; }
+    .rn-img-wrap .card-stats { position: absolute; top: 0.6rem; right: 0.6rem; display: flex; gap: 0.5rem; }
+    .rn-img-wrap .stat-pill { background: rgba(0,0,0,0.25); color: #fff; padding: 0.2rem 0.5rem; border-radius: 100px; font-family: var(--font-sans); font-size: 0.6rem; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 0.15rem; }
+    .rn-img-wrap .stat-pill .stat-icon { width: 10px; height: 10px; margin-right: 0; display: inline-block; }
+    .rn-img-wrap .stat-pill .stat-icon img { width: 100%; height: 100%; filter: brightness(0) saturate(100%) invert(1); }
+    .rn-banner { padding: 0.7rem 0.8rem; }
+    .rn-banner .card-title { font-size: 0.92rem; font-weight: 600; line-height: 1.5; margin-bottom: 0.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--text); }
+    .rn-banner .card-meta { font-family: var(--font-sans); font-size: 0.65rem; color: var(--text-secondary); display: flex; gap: 0.5rem; align-items: center; }
+    .rn-banner .card-meta > span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .rn-banner .card-meta > span { display: flex; align-items: center; gap: 0.1rem; flex-shrink: 0; }
+    @media (max-width: 1000px) { .rednote-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .rednote-grid { grid-template-columns: 1fr; } }
+    /* NNU poster top-crop */
+    .gallery-item.nnu-top img { object-fit: cover; object-position: top; }
+    /* Lightbox multi-image side-by-side */
+    .lightbox-imgs { display: flex; align-items: center; justify-content: center; gap: 1.5rem; height: 84vh; }
+    .lightbox-imgs img { max-width: 90%; max-height: 100%; object-fit: contain; cursor: default; flex-shrink: 0; }
+    .lightbox-imgs.multi { justify-content: flex-start; overflow-x: auto; padding: 0 2rem; }
+    .lightbox-imgs.multi img { max-width: 46%; max-height: 100%; }
+    @media (max-width: 640px) { .lightbox-imgs { flex-direction: column; align-items: center; } .lightbox-imgs img { max-width: 94%; max-height: 46vh; } .lightbox-imgs.multi { flex-direction: row; align-items: center; } .lightbox-imgs.multi img { max-width: 80%; max-height: 42vh; } }
+  </style>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a href="index.html" class="site-title">Anne Zhou's Atlas</a>
+    <nav class="site-nav">
+      <a href="experience.html">个人经历 / Experience</a>
+      <a href="works.html" class="active">作品集 / Portfolio</a>
+      <a href="about.html">关于 / About</a>
+    </nav>
+  </header>
+
+  <main class="container-wide">
+    <div class="page-header animate visible">
+      <h1 class="page-title">Portfolio</h1>
+      <p class="page-subtitle">作品集 — 在媒介之间</p>
+    </div>
+
+    <!-- Section 1: Social Media -->
+    <section class="section animate d1 visible">
+      <h2 class="section-title">Social Media <span>/ 新媒体运营</span></h2>
+
+      <!-- RedNote -->
+      <div class="platform-section">
+        <div class="platform-header">
+          <div class="platform-icon"><img src="logo&icon/redbookActive.png" alt="小红书"></div>
+          <div>
+            <div class="platform-name">小红书</div>
+            <div class="platform-handle">
+              <a href="https://www.xiaohongshu.com/user/profile/5ea1a5140000000001001592" target="_blank">@企鹅兰登</a>
+              &nbsp;·&nbsp;
+              <a href="https://www.xiaohongshu.com/user/profile/558645c25894467faaa17aff" target="_blank" class="nowrap">@Bloomsbury Publishing</a>
+            </div>
+          </div>
+        </div>
+        <div class="rednote-grid">
+          <a class="rednote-card" href="http://xhslink.com/o/9ci603CMkg9" target="_blank">
+            <div class="rn-img-wrap"><img src="covers/陀思妥耶夫斯基阅读指南.png" alt="陀思妥耶夫斯基" loading="lazy"><div class="card-stats"><span class="stat-pill"><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>9,478</span></div></div>
+            <div class="rn-banner">
+              <div class="card-title">陀思妥耶夫斯基的正确打开方式 | 阅读指南</div>
+              <div class="card-meta"><span>企鹅兰登</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>740</span><span><span class="stat-icon"><img src="logo&icon/收藏.svg" alt=""></span>542</span></div>
+            </div>
+          </a>
+          <a class="rednote-card" href="http://xhslink.com/o/9Unnr9rqldb" target="_blank">
+            <div class="rn-img-wrap"><img src="covers/BBC%20%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2%E5%B9%B4%E5%BA%A6%2012%20%E6%9C%AC%E6%9C%80%E4%BD%B3%E4%B9%A6%E7%B1%8D.png" alt="BBC年度书单" loading="lazy"><div class="card-stats"><span class="stat-pill"><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>6,889</span></div></div>
+            <div class="rn-banner">
+              <div class="card-title">书单｜盘点这些媒体2025上半年的年度之选</div>
+              <div class="card-meta"><span>企鹅兰登</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>374</span><span><span class="stat-icon"><img src="logo&icon/收藏.svg" alt=""></span>363</span></div>
+            </div>
+          </a>
+          <a class="rednote-card" href="http://xhslink.com/o/22at3oH8hYW" target="_blank">
+            <div class="rn-img-wrap"><img src="covers/阅读指南｜经典英文原著入门必读书单.png" alt="英文原著" loading="lazy"><div class="card-stats"><span class="stat-pill"><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>6,883</span></div></div>
+            <div class="rn-banner">
+              <div class="card-title">阅读指南｜经典英文原著入门必读书单</div>
+              <div class="card-meta"><span>企鹅兰登</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>326</span><span><span class="stat-icon"><img src="logo&icon/收藏.svg" alt=""></span>283</span></div>
+            </div>
+          </a>
+          <a class="rednote-card" href="http://xhslink.com/o/46L97YaJPAT" target="_blank">
+            <div class="rn-img-wrap"><img src="covers/盘点历年布克奖得主.png" alt="布克奖" loading="lazy"><div class="card-stats"><span class="stat-pill"><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>6,818</span></div></div>
+            <div class="rn-banner">
+              <div class="card-title">从1969到2024｜布克奖获奖作品全览</div>
+              <div class="card-meta"><span>企鹅兰登</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>296</span><span><span class="stat-icon"><img src="logo&icon/收藏.svg" alt=""></span>299</span></div>
+            </div>
+          </a>
+          <a class="rednote-card" href="http://xhslink.com/o/13CB7dT38iS" target="_blank">
+            <div class="rn-img-wrap"><img src="covers/线下限时活动｜哈利·波特书展快闪店来了！.jpg" alt="哈利波特快闪" loading="lazy"><div class="card-stats"><span class="stat-pill"><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>14,916</span></div></div>
+            <div class="rn-banner">
+              <div class="card-title">线下活动｜哈利·波特书展快闪店来了！</div>
+              <div class="card-meta"><span>Bloomsbury Publishing</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>609</span><span><span class="stat-icon"><img src="logo&icon/收藏.svg" alt=""></span>447</span></div>
+            </div>
+          </a>
+          <a class="rednote-card" href="http://xhslink.com/o/9sGGuiBk5Wk" target="_blank">
+            <div class="rn-img-wrap crop"><img src="covers/%E6%99%AE%E5%88%A9%E7%AD%96%E5%A5%96.png" alt="普利策奖" loading="lazy"><div class="card-stats"><span class="stat-pill"><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>6,919</span></div></div>
+            <div class="rn-banner">
+              <div class="card-title">2024普利策奖揭晓🏆追寻属于女性的正义</div>
+              <div class="card-meta"><span>Bloomsbury Publishing</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>380</span><span><span class="stat-icon"><img src="logo&icon/收藏.svg" alt=""></span>321</span></div>
+            </div>
+          </a>
+          <a class="rednote-card" href="http://xhslink.com/o/6pOv3BrCn3q" target="_blank">
+            <div class="rn-img-wrap"><img src="covers/Sarah J.Maas作品全攻略.jpg" alt="Sarah J. Maas" loading="lazy"><div class="card-stats"><span class="stat-pill"><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>6,545</span></div></div>
+            <div class="rn-banner">
+              <div class="card-title">Sarah J. Maas 作品全攻略！你读对了吗</div>
+              <div class="card-meta"><span>Bloomsbury Publishing</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>247</span><span><span class="stat-icon"><img src="logo&icon/收藏.svg" alt=""></span>305</span></div>
+            </div>
+          </a>
+           <a class="rednote-card" href="http://xhslink.com/o/AOkQy7478U0" target="_blank">
+            <div class="rn-img-wrap crop"><img src="covers/%E8%8B%B1%E4%BC%A6%E9%AD%94%E6%B3%95%E5%B8%88.png" alt="英伦魔法师" loading="lazy"><div class="card-stats"><span class="stat-pill"><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>3,433</span></div></div>
+            <div class="rn-banner">
+              <div class="card-title">震撼归来！揭秘《英伦魔法师》20周年典藏版</div>
+              <div class="card-meta"><span>Bloomsbury Publishing</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>164</span><span><span class="stat-icon"><img src="logo&icon/收藏.svg" alt=""></span>126</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- WeChat -->
+      <div class="platform-section">
+        <div class="platform-header">
+          <div class="platform-icon"><img src="logo&icon/wechatActive.png" alt="微信"></div>
+          <div>
+            <div class="platform-name">微信公众号</div>
+            <div class="platform-handle">南京师范大学 · 江苏凤凰文艺出版社 · Bloomsbury Publishing · 企鹅兰登</div>
+          </div>
+        </div>
+        <div class="wechat-grid">
+          <a class="wechat-card" href="https://mp.weixin.qq.com/s/p8in17T9H38KVI89ZpAA2A" target="_blank">
+            <div class="wc-cover"><img src="covers/多少分可以上南师？报考必看！.jpeg" alt="南师报考" loading="lazy"></div>
+            <div class="wc-body">
+              <div class="wc-title">多少分可以上南师？报考必看！</div>
+              <div class="wc-meta"><span class="wc-account">南京师范大学</span><span><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>9.0万</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>212</span></div>
+            </div>
+          </a>
+          <a class="wechat-card" href="https://mp.weixin.qq.com/s/qBZ9aV-pXCQnZ3TzovY_Kg" target="_blank">
+            <div class="wc-cover"><img src="covers/3，2，1…我们，毕业啦！！.jpg" alt="毕业啦" loading="lazy"></div>
+            <div class="wc-body">
+              <div class="wc-title">3，2，1…"我们，毕业啦！！"</div>
+              <div class="wc-meta"><span class="wc-account">南京师范大学</span><span><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>3.1万</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>451</span></div>
+            </div>
+          </a>
+          <a class="wechat-card" href="https://mp.weixin.qq.com/s/9eKYK1RnT1NgDcVLT17Fvw" target="_blank">
+            <div class="wc-cover"><img src="covers/对话莫言：每个故事都是一粒种子.png" alt="对话莫言" loading="lazy"></div>
+            <div class="wc-body">
+              <div class="wc-title">对话莫言：每个故事都是一粒种子</div>
+              <div class="wc-meta"><span class="wc-account">江苏凤凰文艺出版社</span><span><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>712</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>13</span></div>
+            </div>
+          </a>
+          <a class="wechat-card" href="https://mp.weixin.qq.com/s/EUyUAR3G2IqTfuxs7Veh7Q" target="_blank">
+            <div class="wc-cover"><img src="covers/相信阅读，静候阳光｜凤凰文艺2022年度十佳好书出炉.jpg" alt="十佳好书" loading="lazy"></div>
+            <div class="wc-body">
+              <div class="wc-title">相信阅读，静候阳光｜凤凰文艺2022年度十佳好书出炉</div>
+              <div class="wc-meta"><span class="wc-account">江苏凤凰文艺出版社</span><span><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>1,872</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>18</span></div>
+            </div>
+          </a>
+          <a class="wechat-card" href="https://mp.weixin.qq.com/s/vaExAlXq6SxxwBPmjTIsOA" target="_blank">
+            <div class="wc-cover"><img src="covers/《哈利·波特》原版2024全年新书&活动一览.png" alt="哈利波特活动" loading="lazy"></div>
+            <div class="wc-body">
+              <div class="wc-title">《哈利·波特》原版2024全年新书&活动一览</div>
+              <div class="wc-meta"><span class="wc-account">Bloomsbury Publishing</span><span><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>1,201</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>27</span></div>
+            </div>
+          </a>
+           <a class="wechat-card" href="https://mp.weixin.qq.com/s/uv03SHclsWLEh7OxcHZGaQ" target="_blank">
+            <div class="wc-cover"><img src="covers/Vintage%20Collector%E2%80%99s%20Classics.jpg" alt="Vintage Classics" loading="lazy"></div>
+            <div class="wc-body">
+              <div class="wc-title">浪漫+哥特=Vintage Collector's Classics？</div>
+              <div class="wc-meta"><span class="wc-account">企鹅兰登</span><span><span class="stat-icon"><img src="logo&icon/浏览量-01-01.svg" alt=""></span>820</span><span><span class="stat-icon"><img src="logo&icon/点赞-01.svg" alt=""></span>22</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Weibo -->
+      <div class="platform-section">
+        <div class="platform-header">
+          <div class="platform-icon"><img src="logo&icon/weiboActive.png" alt="微博"></div>
+          <div><div class="platform-name">微博</div></div>
+        </div>
+        <div class="weibo-grid">
+          <a class="weibo-card" href="https://weibo.com/njnusun" target="_blank">
+            <img src="logo&icon/南京师范大学.jpg" alt="" class="wb-avatar-img">
+            <div class="wb-info">
+              <div class="wb-name">@南京师范大学</div>
+              <div class="wb-stats">56万 <span class="wb-label">粉丝</span>  ·  71.1万 <span class="wb-label">转赞评</span></div>
+            </div>
+            <span class="wb-arrow">→</span>
+          </a>
+          <a class="weibo-card" href="https://weibo.com/penguinbooks" target="_blank">
+            <img src="logo&icon/企鹅兰登.jpg" alt="" class="wb-avatar-img">
+            <div class="wb-info">
+              <div class="wb-name">@企鹅兰登</div>
+              <div class="wb-stats">9.3万 <span class="wb-label">粉丝</span>  ·  18.6万 <span class="wb-label">转赞评</span></div>
+            </div>
+            <span class="wb-arrow">→</span>
+          </a>
+          <a class="weibo-card" href="https://weibo.com/xinminshuo" target="_blank">
+            <img src="logo&icon/新民说.jpg" alt="" class="wb-avatar-img">
+            <div class="wb-info">
+              <div class="wb-name">@广西师大出版社·新民说</div>
+              <div class="wb-stats">12.5万 <span class="wb-label">粉丝</span>  ·  12万 <span class="wb-label">转赞评</span></div>
+            </div>
+            <span class="wb-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Visual Design -->
+    <section class="section animate d2 visible">
+      <h2 class="section-title">Visual Design <span>/ 视觉设计</span></h2>
+      <div class="gallery">
+        <div class="gallery-item" onclick="openLightbox('images/mask-product-promo.png', '广西师大出版社 · 《口罩》图书宣传图')">
+          <img src="images/mask-product-promo.png" alt="口罩图书宣传" loading="lazy">
+          <div class="gallery-caption"><div class="title">《口罩》图书宣传图</div><div class="sub">广西师大出版社 · 新民说</div></div>
+        </div>
+        <div class="gallery-item" onclick="openLightboxMulti([{src:'images/plant-life-metaphysics-promo.png',caption:'广西师大出版社 · 《植物生命》图书宣传图'},{src:'images/《植物生命》KT板.png'},{src:'images/%E6%A4%8D%E7%89%A9%E7%94%9F%E5%91%BD.png'}])">
+          <img src="images/plant-life-metaphysics-promo.png" alt="植物生命宣传" loading="lazy">
+          <div class="gallery-caption"><div class="title">《植物生命》图书宣传图</div><div class="sub">广西师大出版社 · 新民说</div></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('images/黄山书市新民说海报.jpg', '广西师大出版社 · 黄山书市新民说海报')">
+          <img src="images/黄山书市新民说海报.jpg" alt="黄山书市" loading="lazy">
+          <div class="gallery-caption"><div class="title">黄山书市 · 新民说海报</div><div class="sub">广西师大出版社 · 线下物料</div></div>
+        </div>
+        <div class="gallery-item nnu-top" onclick="openLightbox('images/zhejiang-book-fair-kv.jpg', '浙江书展 · 从莫扎特到贝多芬 — 活动主KV')">
+          <img src="images/zhejiang-book-fair-kv.jpg" alt="浙江书展" loading="lazy">
+          <div class="gallery-caption"><div class="title">浙江书展 · 《从莫扎特到贝多芬》活动</div><div class="sub">广西师大出版社 · 活动主KV</div></div>
+        </div>
+        <div class="gallery-item" onclick="openLightboxMulti([{src:'images/mishima-rednote-cover.png',caption:'企鹅兰登 · 三岛由纪夫作品'},{src:'images/2.png',caption:''},{src:'images/3.png',caption:''},{src:'images/4.png',caption:''},{src:'images/5.png',caption:''}])">
+          <img src="images/mishima-rednote-cover.png" alt="三岛由纪夫" loading="lazy">
+          <div class="gallery-caption"><div class="title">三岛由纪夫书单</div><div class="sub">企鹅兰登 · 小红书封面</div></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('images/penguin-archive-rednote-cover.png', '企鹅兰登 · Penguin Archive 90周年')">
+          <img src="images/penguin-archive-rednote-cover.png" alt="Penguin Archive" loading="lazy">
+          <div class="gallery-caption"><div class="title">Penguin Archive 线下活动</div><div class="sub">企鹅兰登 · 小红书封面</div></div>
+        </div>
+        <div class="gallery-item" onclick="openLightboxMulti([{src:'images/%E5%8C%97%E7%BE%8E%E6%99%8B%E6%B1%9F%20-%E5%B0%8F%E7%BA%A2%E4%B9%A6%E7%AC%94%E8%AE%B0%E5%B0%81%E9%9D%A2.png',caption:'Bloomsbury · 北美晋江书单'},{src:'images/%E5%8C%97%E7%BE%8E%E6%99%8B%E6%B1%9F/2.png',caption:''},{src:'images/%E5%8C%97%E7%BE%8E%E6%99%8B%E6%B1%9F/3.png',caption:''},{src:'images/%E5%8C%97%E7%BE%8E%E6%99%8B%E6%B1%9F/4.png',caption:''},{src:'images/%E5%8C%97%E7%BE%8E%E6%99%8B%E6%B1%9F/5.png',caption:''}])">
+          <img src="images/北美晋江 -小红书笔记封面.png" alt="北美晋江" loading="lazy">
+          <div class="gallery-caption"><div class="title">北美晋江书单</div><div class="sub">Bloomsbury Publishing · 小红书封面</div></div>
+        </div>
+        <div class="gallery-item nnu-top" onclick="openLightboxMulti([{src:'images/nnu-120th-conference-poster.png',caption:'南京师范大学 · 120周年'},{src:'images/nnu-120th-anniversary-poster.png',caption:'南京师范大学 · 120周年校庆'}])">
+          <img src="images/nnu-120th-conference-poster.png" alt="南师大120周年" loading="lazy">
+          <div class="gallery-caption"><div class="title">南师大120周年校庆活动</div><div class="sub">南京师范大学 · 直播预告</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Writing -->
+    <section class="section animate d3 visible">
+      <h2 class="section-title">Writing <span>/ 文字作品</span></h2>
+      <div class="article-grid">
+        <a class="article-card" href="https://mp.weixin.qq.com/s/J6OeSDxmVDKOLelAMX6OYA" target="_blank">
+          <div class="art-icon">📝</div>
+          <div class="art-info">
+            <div class="art-title">时代变革中的文学求索——文学技艺的创新与再造</div>
+            <div class="art-source">长三角·大湾区文学周 · 活动简讯</div>
+          </div>
+          <span class="art-arrow">→</span>
+        </a>
+        <a class="article-card" href="https://mp.weixin.qq.com/s/U9qV0XiKO07n8Q_dx9x9hA" target="_blank">
+          <div class="art-icon">📝</div>
+          <div class="art-info">
+            <div class="art-title">在世界与语言间遇见上海｜思南读书会 No.519 活动简讯</div>
+            <div class="art-source">思南读书会 · 活动简讯</div>
+          </div>
+          <span class="art-arrow">→</span>
+        </a>
+        <a class="article-card" href="https://mp.weixin.qq.com/s/WoJMw_nBQQOAoWT_w8HlDQ" target="_blank">
+          <div class="art-icon">📝</div>
+          <div class="art-info">
+            <div class="art-title">她时代，在纸上绽放：当世界开始倾听女性的声音</div>
+            <div class="art-source">随园版话 · 微信公众号</div>
+          </div>
+          <span class="art-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 4: Video -->
+    <section class="section animate d4 visible">
+      <h2 class="section-title">Video <span>/ 视频作品</span></h2>
+      <div class="video-grid">
+        <div class="video-card" onclick="toggleVideo(this)">
+          <div class="vid-cover">
+            <video preload="none" poster="images/he-yi-wei-song-thumb.png" playsinline controlslist="nodownload" onclick="event.stopPropagation()">
+              <source src="images/%E4%BD%95%E4%BB%A5%E6%83%9F%E5%AE%8B%E6%B4%BB%E5%8A%A8%E5%88%87%E7%89%87.mp4" type="video/mp4">
+            </video>
+            <div class="vid-play"></div>
+          </div>
+          <div class="vid-body"><div class="vid-title">何以惟宋 · 活动切片</div></div>
+        </div>
+        <div class="video-card" onclick="toggleVideo(this)">
+          <div class="vid-cover">
+            <video preload="none" poster="images/penguin-archive-video-cover.jpg" playsinline controlslist="nodownload" onclick="event.stopPropagation()">
+              <source src="images/Penguin%20Archive%E5%AE%A3%E4%BC%A0%E8%A7%86%E9%A2%91.mp4" type="video/mp4">
+            </video>
+            <div class="vid-play"></div>
+          </div>
+          <div class="vid-body"><div class="vid-title">Penguin Archive · 系列宣传</div></div>
+        </div>
+        <div class="video-card" onclick="toggleVideo(this)">
+          <div class="vid-cover">
+            <video preload="none" poster="images/Harry%20Potter%20Books%20Day-0001.png" playsinline controlslist="nodownload" onclick="event.stopPropagation()">
+              <source src="images/Harry%20Potter%20Books%20Day.mp4" type="video/mp4">
+            </video>
+            <div class="vid-play"></div>
+          </div>
+          <div class="vid-body"><div class="vid-title">哈利·波特图书日 · 活动预热</div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <div class="lightbox-imgs" id="lightbox-imgs"></div>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-item">
+        <strong>Email</strong>
+        <p><a href="mailto:2003-2009-2013@163.com">2003-2009-2013@163.com</a></p>
+      </div>
+      <div class="footer-item">
+        <strong>Tel</strong>
+        <p class="tel-copy" onclick="copyTel(this)" title="点击复制">+86 177 7737 5720</p>
+      </div>
+      <div class="footer-item footer-download">
+        <strong>下载简历 / Resume</strong>
+        <p><a href="周欣怡-南京师范大学-研一-出版.pdf" download class="resume-link">中文</a><span class="resume-sep"> / </span><a href="Resume - Anne Zhou.pdf" download class="resume-link">English</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyTel(el) {
+      const text = '+8617777375720';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => showCopied(el)).catch(() => fallbackCopy(text, el));
+      } else {
+        fallbackCopy(text, el);
+      }
+    }
+    function fallbackCopy(text, el) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+      showCopied(el);
+    }
+    function showCopied(el) {
+      el.classList.add('copied');
+      setTimeout(() => el.classList.remove('copied'), 1500);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+    function openLightbox(src, caption) {
+      var container = document.getElementById('lightbox-imgs');
+      container.innerHTML = '';
+      container.classList.remove('multi');
+      var img = document.createElement('img');
+      img.src = src;
+      container.appendChild(img);
+      document.getElementById('lightbox-caption').textContent = caption || '';
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function openLightboxMulti(images) {
+      var container = document.getElementById('lightbox-imgs');
+      container.innerHTML = '';
+      container.classList.add('multi');
+      images.forEach(function(im) {
+        var img = document.createElement('img');
+        img.src = im.src;
+        container.appendChild(img);
+      });
+      document.getElementById('lightbox-caption').textContent = images[0].caption || '';
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+    function toggleVideo(card) {
+      const video = card.querySelector('video');
+      const playBtn = card.querySelector('.vid-play');
+      if (!video) return;
+      if (video.paused) {
+        card.classList.add('playing');
+        video.controls = true;
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+        card.classList.remove('playing');
+        video.controls = false;
+      }
+    }
+  </script>
+</body>
+</html>
